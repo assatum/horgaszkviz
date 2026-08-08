@@ -415,8 +415,9 @@ function veletlenElemek(forras, n) {
  * @returns {Array} 5 válaszlehetőség, összekeverve
  */
 function valaszokOsszeallitasa(helyes, osszes) {
-  // a rossz válaszok = az összes, kivéve a helyes
-  const rosszak = osszes.filter(x => x !== helyes);
+  // a rossz válaszok = az összes, kivéve a helyes,
+  // majd az ismétlődések kiszűrése (Set) – így minden érték csak egyszer szerepel
+  const rosszak = [...new Set(osszes.filter(x => x !== helyes))];
   const rosszNegy = veletlenElemek(rosszak, 4);
   return kever([helyes, ...rosszNegy]);
 }
